@@ -1,3 +1,5 @@
+#!/bin/python3
+
 from wakepy import keepawake 
 import pyautogui 
 import time 
