@@ -3,4 +3,4 @@
 xbps-query --list-manual-pkgs | awk '{gsub(/-[0-9]+.*$/, ""); print $0}'
 
 # alternative sed version:
-# xbps-query --list-manual-pkgs | awk -F '{gsub(/-[0-9]+.*$/, ""); print $0}'
+# xbps-query --list-manual-pkgs | sed "s/-[0-9].*//g"
