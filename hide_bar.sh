@@ -1,5 +1,5 @@
 #!/bin/sh
-# Simple script to hide Polybar. 
+# Simple script to hide Polybar on bspwm 
 
 if [ -f /tmp/polybarhidden ]; then 
     bspc config top_padding 45 
