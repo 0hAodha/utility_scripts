@@ -2,7 +2,7 @@
 # Simple script to hide Polybar on bspwm 
 
 if [ -f /tmp/polybarhidden ]; then 
-    bspc config top_padding 26 
+    bspc config top_padding 38 
     polybar-msg cmd show 
     rm /tmp/polybarhidden 
 else 
