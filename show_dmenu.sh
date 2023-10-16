@@ -9,7 +9,7 @@ if [ -f /tmp/polybarhidden ]; then
 else 
     polybar-msg cmd hide 
     touch /tmp/polybarhidden 
-    dmenu_run -fn "SauceCodePro Nerd Font-11" -nf "#f0f0f0" -nb "#0f0f0f" -sf "#f0f0f0" -sb "#8f8aac"
+    selection=$(dmenu_run -fn "SauceCodePro Nerd Font-11" -nf "#f0f0f0" -nb "#0f0f0f" -sf "#f0f0f0" -sb "#8f8aac") # only assigning a variable here to force the next command to wait til dmenu is done
     polybar-msg cmd show 
     rm /tmp/polybarhidden 
 fi
