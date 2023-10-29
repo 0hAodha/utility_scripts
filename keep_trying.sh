@@ -4,7 +4,7 @@
 
 network="<network_name>"
 interface="<interface_name>"
-interval=5
+interval=1
 
 while [ true ]; do 
     # if wifi is connected, do nothing for $interval seconds
