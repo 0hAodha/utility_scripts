@@ -1,5 +1,5 @@
 #!/bin/sh
-# Simple script to disable bluetooth on my system. 
+# Simple script to disable bluetooth on Void Linux (using the runit init system)
 
 echo "Attempting to turn off bluetooth via bluetoothctl"
 bluetoothctl power off
