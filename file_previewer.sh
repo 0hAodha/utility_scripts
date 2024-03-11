@@ -1,10 +1,9 @@
 #!/bin/sh
-# File preview handler for lf.
+# File preview handler for lf using the Perl `mimetype` utility.
 
 preview_filepath="/tmp/lf_preview_image.png"
 
-case "$(file --dereference --brief --mime-type -- "$1")" in
-    # gzip or doc or ISO or docx
+case "$(mimetype --brief -- "$1")" in
     application/gzip | application/msword | application/x-iso9660-image | application/vnd.openxmlformats-officedocument.wordprocessingml.document)
         exiftool "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
 
@@ -18,7 +17,7 @@ case "$(file --dereference --brief --mime-type -- "$1")" in
     application/vnd.sqlite3)
         sqlite3 "$1" "SELECT * FROM sqlite_master WHERE type = 'table';" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
 
-    application/x-pcapng | application/octet-stream)    # `mimetype` gives the first mimetype while `file` gives the second
+    application/x-pcapng)
         tshark -r "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;   # the --read-file option does not seem to work
     
     application/zip)
