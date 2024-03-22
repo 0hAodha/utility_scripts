@@ -4,7 +4,7 @@
 preview_filepath="/tmp/lf_preview_image.png"
 
 case "$(mimetype --brief -- "$1")" in
-    application/gzip | application/msword | application/x-iso9660-image | application/vnd.openxmlformats-officedocument.wordprocessingml.document | application/vnd.openxmlformats-officedocument.presentationml.presentation )
+    application/gzip | application/msword | application/x-iso9660-image | application/vnd.openxmlformats-officedocument.wordprocessingml.document | application/vnd.openxmlformats-officedocument.presentationml.presentation | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
         exiftool "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
 
     application/json) 
