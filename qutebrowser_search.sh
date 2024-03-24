@@ -1,4 +1,5 @@
 #!/bin/sh
+# script to find all the search engines in the qutebrowser configuration file and make them available for searching via dmenu
 
 input="$(
     awk '/^c\.url\.searchengines =/,/^}$/{
