@@ -2,6 +2,8 @@
 # simple script to fix my broken wifi 
 # it checks if wifi is connected at regular intervals, and if not, repeatedly attempts to connect
 
+trap "echo 'SIGINT received, terminating'; exit" SIGINT
+
 # source the network & interface names from a file 
 source config.env
 
