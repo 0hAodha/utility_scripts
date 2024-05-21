@@ -1,42 +1,48 @@
 #!/bin/sh
 # File preview handler for lf using the Perl `mimetype` utility.
 
-preview_filepath="/tmp/lf_preview_image.png"
+preview_image="/tmp/lf_preview_image.jpg"
 
-case "$(mimetype --brief -- "$1")" in
+file=$1
+width=$2
+height=$3
+x=$4
+y=$5
+
+case "$(mimetype --brief -- "$file")" in
     application/gzip | application/msword | application/x-iso9660-image | application/vnd.openxmlformats-officedocument.wordprocessingml.document | application/vnd.openxmlformats-officedocument.presentationml.presentation | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
-        exiftool "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
+        exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     application/json) 
-        jq --color-output . "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
+        jq --color-output . "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     application/pdf)
-        pdftoppm -jpeg "$1" -singlefile | chafa --size="$(($2-4))"x"$3" --animate off
-        pdfinfo "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
+        pdftoppm -jpeg "$file" -singlefile | chafa --size="$(($width-4))"x"$height" --animate off
+        pdfinfo "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     application/vnd.sqlite3)
-        sqlite3 "$1" "SELECT * FROM sqlite_master WHERE type = 'table';" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
+        sqlite3 "$file" "SELECT * FROM sqlite_master WHERE type = 'table';" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     application/x-pcapng)
-        tshark -r "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;   # the --read-file option does not seem to work
-    
+        tshark -r "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;   # the --read-file option does not seem to work
+
     application/zip)
-        unzip -lv "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
+        unzip -lv "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     audio/*)
-        exiftool -Picture -b "$1" | chafa --size="$(($2-4))"x"$3" --animate off || chafa cover.* --size="$(($2-4))"x"$3" --animate off 
-        exiftool "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
+        exiftool -Picture -b "$file" | chafa --size="$(($width-4))"x"$height" --animate off || chafa cover.* --size="$(($width-4))"x"$height" --animate off 
+        exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     video/*)
-        ffmpeg -ss 00:00:00 -i "$1" -frames:v 1 "$preview_filepath"    
-        chafa "$preview_filepath" --size="$(($2-4))"x"$3"
+        ffmpeg -ss 00:00:00 -i "$file" -frames:v 1 "$preview_filepath"
+        chafa "$preview_filepath" --size="$(($width-4))"x"$height"
         rm "$preview_filepath"  # removing preview file so that lf looks for a new preview image instead of going for an old one
-        exiftool "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
+        exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     image/*)
-        chafa "$1" --size="$(($2-4))"x"$3" --animate off
-        exiftool "$1" | bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization;;
+        chafa "$file" --size="$(($width-4))"x"$height" --animate off
+        exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     *)
-        bat --theme='base16' --terminal-width "$(($2-4))" --force-colorization "$1"
+        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file"
 esac
