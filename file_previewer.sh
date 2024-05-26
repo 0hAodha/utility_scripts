@@ -33,14 +33,17 @@ case "$(mimetype --brief -- "$file")" in
         exiftool -Picture -b "$file" | chafa --size="$(($width-4))"x"$height" --animate off || chafa cover.* --size="$(($width-4))"x"$height" --animate off 
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
+    image/*)
+        chafa "$file" --size="$(($width-4))"x"$height" --animate off
+        exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
+
+    text/csv)
+        column --separator "," --table "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
+
     video/*)
         ffmpeg -ss 00:00:00 -i "$file" -frames:v 1 -q:v 2 "$preview_image"
         chafa "$preview_image" --size="$(($width-4))"x"$height"
         rm "$preview_image"  # removing preview file so that lf looks for a new preview image instead of going for an old one
-        exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
-
-    image/*)
-        chafa "$file" --size="$(($width-4))"x"$height" --animate off
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     *)
