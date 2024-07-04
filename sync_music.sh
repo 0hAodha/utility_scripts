@@ -12,3 +12,4 @@ rsync --archive --delete "$source" "$destination"
 
 sync
 fusermount -u "$mountpoint"
+rmdir "$mountpoint"
