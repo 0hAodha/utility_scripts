@@ -1,4 +1,5 @@
 #!/usr/bin/perl -l
+# Perl script to display information about connected bluetooth devices. Designed to be used with polybar
 
 use strict;
 use warnings;
