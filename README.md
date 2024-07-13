@@ -5,6 +5,7 @@
  - `bluetooth-off.sh`: script for disabling bluetooth with bluetoothcl on a system that uses 
  runit as its init system (such as Void GNU/Linux).
  - `bluetooth-on.sh`: Same as `bluetooth-off.sh` but for enabling bluetooth.
+ - `bluetooth_info.pl`: Perl script to display information about connected bluetooth devices. Designed to be used with polybar.
  - `bspwm_window_count.sh`: script for listing the number of open windows on the current "desktop" (workspace) with the bspwm window manager.
  Primarily for use in status bars as indicator that windows may be hidden behind another when in floating or monocle mode.
  - `clean_files.sh`: script that loops through each file in a directory, opens each file with the `mimeopen` utility, and prompts the user to decide whether
