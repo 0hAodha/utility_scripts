@@ -20,7 +20,7 @@ foreach my $name (sort(keys %devices)) {
     $device_list .= $name . "\n";
 }
 
-my $selection = `echo "$device_list" | dmenu`;
+my $selection = `printf "$device_list" | dmenu` or die("No selection made");
 chomp($selection);
 `notify-send "$script_name" "Attempting to connect to $selection"`;
 `bluetoothctl connect $devices{$selection}`;
