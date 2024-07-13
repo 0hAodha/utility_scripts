@@ -4,12 +4,12 @@
 use strict;
 use warnings;
 
-my $output = `bluetoothctl info` or die;
+my $output = `bluetoothctl info` or die("disconnected\n");
 
-my $mac_address = $1 if ($output =~ /^Device\s+(\S+)/) or die("N/A\n");
-my $device_name = $1 if ($output =~ /Name:\s+(.*)/);
-my $icon = $1 if ($output =~ /Icon:\s+(.*)/);
-my $battery_percentage = $1 if ($output =~ /Battery Percentage:\s+\S+\s\(([0-9]+)\)/);
+my $mac_address = ($output =~ /^Device\s+(\S+)/) ? "$1" : die("disconnected\n");
+my $device_name = ($output =~ /Name:\s+(.*)/) ? "$1" : "unknown";
+my $icon = ($output =~ /Icon:\s+(.*)/) ? "$1" : "";
+my $battery_percentage = ($output =~ /Battery Percentage:\s+\S+\s\(([0-9]+)\)/) ? "$1" : "";
 
 if ($icon eq "audio-headphones") {
     printf("  ");
