@@ -16,9 +16,8 @@ foreach my $device (split(/\n/, $output)) {
 }
 
 my $device_list = "";
-foreach my $name (keys %devices) {
+foreach my $name (sort(keys %devices)) {
     $device_list .= $name . "\n";
-
 }
 
 my $selection = `echo "$device_list" | dmenu`;
@@ -30,6 +29,5 @@ if ($? == 0) {
     `notify-send "$script_name" "Successfully connected to $selection"`;
 }
 else {
-
     `notify-send "$script_name" "Failed to connect to $selection"`;
 }
