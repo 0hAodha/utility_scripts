@@ -8,8 +8,9 @@ destination="$mountpoint/Internal shared storage/Music/"
 mkdir "$mountpoint"
 aft-mtp-mount "$mountpoint"
 
-rsync --archive --delete --info=progress2 "$source" "$destination"
-
-sync
-fusermount -u "$mountpoint"
-rmdir "$mountpoint"
+rsync --archive --compress --partial --append-verify --delete --info=progress2 "$source" "$destination" &&
+{
+    sync
+    fusermount -u "$mountpoint"
+    rmdir "$mountpoint"
+}
