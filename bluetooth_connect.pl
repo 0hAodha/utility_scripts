@@ -22,12 +22,12 @@ foreach my $name (sort(keys %devices)) {
 
 my $selection = `printf "$device_list" | dmenu` or die("No selection made");
 chomp($selection);
-`notify-send "$script_name" "Attempting to connect to $selection"`;
+`notify-send "$script_name" "Attempting to connect to $selection ($devices{$selection})"`;
 `bluetoothctl connect $devices{$selection}`;
 
 if ($? == 0) {
-    `notify-send "$script_name" "Successfully connected to $selection"`;
+    `notify-send "$script_name" "Successfully connected to $selection ($devices{$selection})"`;
 }
 else {
-    `notify-send "$script_name" "Failed to connect to $selection"`;
+    `notify-send "$script_name" "Failed to connect to $selection ($devices{$selection})"`;
 }
