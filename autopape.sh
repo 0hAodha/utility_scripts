@@ -37,7 +37,7 @@ while [ true ]
 do
     for img in *
     do
-        eval "$command" "$img"
+        eval "$command '$img'"
         sleep "$interval"
     done
 done
