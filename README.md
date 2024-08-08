@@ -30,7 +30,6 @@
  Intended for use when a program that outputs to `stdout` is called from a non-terminal or graphical program, making the `stdout` output inaccessible.
  The output can instead be piped into this script to make it readable as a system notification.
  - `stopwatch.sh`: simple stopwatch script that counts the elapsed time in seconds, and displays it in the format HH:MM:SS.
- - `suicidal_script.sh`: a script that deletes itself. Doesn't do anything, just a proof of concept.
  - `sync_music.sh`: script to sync my Android phone's music library to the contents of my `~/media/music/` directory, i.e. copy my music library from my
  laptop to my phone.
  - `trippy.sh`: script that displays random visual data to the screen (only works when called from a TTY, by a user who has write access to the `fb0` device, e.g. `root`).
