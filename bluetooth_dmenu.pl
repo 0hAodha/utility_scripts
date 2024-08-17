@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+# Script that allows the user to select a bluetooth device to connect to via dmenu.
 use strict;
 use warnings;
 
