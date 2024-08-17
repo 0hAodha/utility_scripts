@@ -34,3 +34,4 @@
  laptop to my phone.
  - `trippy.sh`: script that displays random visual data to the screen (only works when called from a TTY, by a user who has write access to the `fb0` device, e.g. `root`).
  - `webcam.sh`: one-line script that uses the video viewer program `mpv` as a webcam by using `/dev/video0` as its video file source.
+ - `wifi_dmenu.sh`: script to connect to an available WiFi network with a dmenu prompt. 
