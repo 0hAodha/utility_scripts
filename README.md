@@ -11,6 +11,7 @@
  Primarily for use in status bars as indicator that windows may be hidden behind another when in floating or monocle mode.
  - `clean_files.sh`: script that loops through each file in a directory, opens each file with the `mimeopen` utility, and prompts the user to decide whether
  or not to delete the image.
+ - `defn`: shell script to look up word in dictionary file in the format: `word:\tdefinition\n`.
  - `ensure_connected.sh`: script to remedy my broken WiFi, which has an issue of disconnecting unpredictably and then requiring several attempts to reconnect as 
  if the password supplied were incorrect despite it not being changed since the inital connection.
  This script checks if the WiFi is connected at regular intervals, and if not will keep trying to reconnect until successful.

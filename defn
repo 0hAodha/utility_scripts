@@ -1,0 +1,4 @@
+#!/bin/sh
+# Script to look up word in dictionary file in the format: "word:\tdefinition\n"
+
+rg --no-line-number "^$1:" ~/.local/share/dictionary.txt
