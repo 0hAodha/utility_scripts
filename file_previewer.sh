@@ -17,7 +17,7 @@ case "$(mimetype --brief -- "$file")" in
         jq --color-output . "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     application/pdf)
-        pdftoppm -jpeg "$file" -singlefile | termimage --size "$(($width-4))"x"$height"
+        pdftoppm -jpeg "$file" -singlefile | chafa --size "$(($width-4))"x"$height"
         pdfinfo "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     application/vnd.sqlite3)
@@ -30,12 +30,11 @@ case "$(mimetype --brief -- "$file")" in
         unzip -lv "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     audio/*)
-        exiftool -Picture -b "$file" | termimage --size "$(($width-4))"x"$height" || termimage cover.* --size "$(($width-4))"x"$height"
+        exiftool -Picture -b "$file" | chafa --size "$(($width-4))"x"$height" || chafa cover.* --size "$(($width-4))"x"$height"
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     image/*)
-        termimage "$file" --size "$(($width-4))"x"$height"
-        # chafa "$file" --size="$(($width-4))"x"$height" --animate off
+        chafa "$file" --size "$(($width-4))"x"$height" --animate off
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     text/csv)
@@ -43,7 +42,7 @@ case "$(mimetype --brief -- "$file")" in
 
     video/*)
         ffmpeg -ss 00:00:00 -i "$file" -frames:v 1 -q:v 2 "$preview_image"
-        termimage "$preview_image" --size "$(($width-4))"x"$height"
+        chafa "$preview_image" --size "$(($width-4))"x"$height"
         rm "$preview_image"  # removing preview file so that lf looks for a new preview image instead of going for an old one
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
