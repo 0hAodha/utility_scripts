@@ -26,6 +26,9 @@ case "$(mimetype --brief -- "$file")" in
     application/x-pcapng)
         tshark -r "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;   # the --read-file option does not seem to work
 
+    application/x-shellscript)
+        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
+
     application/zip)
         unzip -lv "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
