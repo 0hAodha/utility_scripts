@@ -40,6 +40,9 @@ case "$(mimetype --brief -- "$file")" in
     text/csv)
         column --separator "," --table "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
+    text/*)
+        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
+
     video/*)
         ffmpeg -ss 00:00:00 -i "$file" -frames:v 1 -q:v 2 "$preview_image"
         chafa "$preview_image" --size "$(($width-4))"x"$height"
@@ -47,5 +50,5 @@ case "$(mimetype --brief -- "$file")" in
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     *)
-        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file"
+        exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 esac
