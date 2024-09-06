@@ -23,6 +23,9 @@ case "$(mimetype --brief -- "$file")" in
     application/vnd.sqlite3)
         sqlite3 "$file" "SELECT * FROM sqlite_master WHERE type = 'table';" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
+    application/x-java)
+        javap "$file" | bat --language=java --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
+
     application/x-pcapng)
         tshark -r "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;   # the --read-file option does not seem to work
 
