@@ -49,6 +49,9 @@ case "$(mimetype --brief -- "$file")" in
     text/csv)
         column --separator "," --table "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
+    text/html)
+        lynx -width="$width" -display_charset=utf-8 -dump "$file";;
+
     text/*)
         bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
 
