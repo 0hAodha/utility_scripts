@@ -23,6 +23,9 @@ case "$(mimetype --brief -- "$file")" in
     application/vnd.sqlite3)
         sqlite3 "$file" "SELECT * FROM sqlite_master WHERE type = 'table';" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
+    application/xml)
+        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
+
     application/x-java)
         javap "$file" | bat --language=java --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
