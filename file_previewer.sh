@@ -20,6 +20,9 @@ case "$(mimetype --brief -- "$file")" in
         pdftoppm -jpeg "$file" -singlefile | chafa --size "$(($width-4))"x"$height"
         pdfinfo "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
+    application/sql)
+        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
+
     application/toml)
         bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
 
