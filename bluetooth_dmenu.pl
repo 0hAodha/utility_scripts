@@ -21,7 +21,7 @@ foreach my $name (sort(keys %devices)) {
     $device_list .= $name . "\n";
 }
 
-my $selection = `printf "$device_list" | dmenu -p "Connect Bluetooth device:"` or die("No selection made");
+my $selection = `printf "$device_list" | dmenu -i -p "Connect Bluetooth device:"` or die("No selection made");
 chomp($selection);
 `notify-send "$script_name" "Attempting to connect to $selection ($devices{$selection})"`;
 `bluetoothctl connect $devices{$selection}`;
