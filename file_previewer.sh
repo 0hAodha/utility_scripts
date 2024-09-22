@@ -20,29 +20,14 @@ case "$(mimetype --brief -- "$file")" in
         pdftoppm -jpeg "$file" -singlefile | chafa --size "$(($width-4))"x"$height"
         pdfinfo "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
-    application/sql)
-        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
-
-    application/toml)
-        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
-
     application/vnd.sqlite3)
         sqlite3 "$file" "SELECT * FROM sqlite_master WHERE type = 'table';" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
-
-    application/xml)
-        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
 
     application/x-java)
         javap "$file" | bat --language=java --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     application/x-pcapng)
         tshark -r "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;   # the --read-file option does not seem to work
-
-    application/x-perl)
-        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
-
-    application/x-shellscript)
-        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
 
     application/zip)
         unzip -lv "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
@@ -61,9 +46,6 @@ case "$(mimetype --brief -- "$file")" in
     text/html)
         lynx -width="$width" -display_charset=utf-8 -dump "$file";;
 
-    text/*)
-        bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file";;
-
     video/*)
         ffmpeg -ss 00:00:00 -i "$file" -frames:v 1 -q:v 2 "$preview_image"
         chafa "$preview_image" --size "$(($width-4))"x"$height"
@@ -71,5 +53,12 @@ case "$(mimetype --brief -- "$file")" in
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     *)
-        exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
+        # check if file is text or binary
+        if file "$file" | grep --silent "text"; then
+            bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization "$file"
+        else
+            exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization
+        fi
+        ;;
+
 esac
