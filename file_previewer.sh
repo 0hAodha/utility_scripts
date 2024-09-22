@@ -4,8 +4,8 @@
 preview_image="/tmp/lf_preview_image.png"
 
 file=$1
-width=$2
-height=$3
+width="${2:-$(tput cols)}"
+height="${3:-$(tput lines)}"
 x=$4
 y=$5
 
