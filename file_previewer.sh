@@ -35,6 +35,9 @@ case "$(mimetype --brief -- "$file")" in
     application/x-pcapng)
         tshark -r "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;   # the --read-file option does not seem to work
 
+    application/x-zstd-compressed-tar)
+        tar --list --use-compress-program zstd --file "$file" | bat --language=java --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
+
     application/zip)
         unzip -lv "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
