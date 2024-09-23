@@ -21,10 +21,13 @@ case "$(mimetype --brief -- "$file")" in
         pdfinfo "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     application/vnd.rar)
-        unrar l "$file" |bat --language=java --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
+        unrar l "$file" | bat --language=java --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     application/vnd.sqlite3)
         sqlite3 "$file" "SELECT * FROM sqlite_master WHERE type = 'table';" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
+
+    application/x-compressed-tar)
+        tar --list --ungzip --file "$file" | bat --language=java --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     application/x-java)
         javap "$file" | bat --language=java --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
