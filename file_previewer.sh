@@ -9,7 +9,14 @@ height="${3:-$(tput lines)}"
 x=$4
 y=$5
 
-case "$(mimetype --brief -- "$file")" in
+mimetype="$(mimetype --brief -- "$file")"
+
+if [ "$mimetype" = "inode/symlink" ]; then
+    file="$(readlink "$file")"
+    mimetype="$(mimetype --brief -- "$file")"
+fi
+
+case "$mimetype" in
     application/gzip | application/msword | application/x-iso9660-image | application/vnd.openxmlformats-officedocument.wordprocessingml.document | application/vnd.openxmlformats-officedocument.presentationml.presentation | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
