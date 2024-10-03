@@ -57,7 +57,7 @@ case "$mimetype" in
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     text/csv)
-        column --separator "," --table "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
+        column --separator "," --table "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization --wrap=never;;
 
     text/html)
         lynx -width="$width" -display_charset=utf-8 -dump "$file";;
