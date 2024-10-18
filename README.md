@@ -19,8 +19,8 @@
  - `file_previewer.sh`: a script for generating terminal file previews, for use in the terminal file manager `lf`.
  Uses the `mimetype` utility to identify the filetype and generates an appropriate preview (text, ASCII image, etc).
  - `hide_bar.sh`: script for hiding & unhiding the polybar bar on the bspwm window manager.
- - `hugo_post.sh`: simple script to create a new Hugo post with the directory structure `/content/posts/Post Title/index.md` instead of the default
- `/content/posts/Post Title.md` created when you run the command `hugo new content`.
+ - `hugo_post.sh`: simple script to create a new Hugo post with the directory structure `/content/blog/Post Title/index.md` instead of the default
+ `/content/blog/Post Title.md` created when you run the command `hugo new content`.
  - `list_manual_pkgs.sh`: one-line script to list only the names of packages manually installed with the xbps package manager (the default Void package manager).
  - `qutebrowser_search.sh`: script that finds all the search engines defined in the qutebrowser `config.py` configuration file and makes them available for
  searching via dmenu, i.e. allow web searching with qutebrowser without having to wait for it to start up before you start your search.
