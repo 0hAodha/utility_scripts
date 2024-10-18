@@ -3,5 +3,5 @@
 
 title="$1"
 
-mkdir "./content/posts/$title"
-hugo new content "posts/$title/index.md"
+mkdir "./content/blog/$title"
+hugo new content "blog/$title/index.md"
