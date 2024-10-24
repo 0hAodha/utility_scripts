@@ -33,5 +33,6 @@
  - `stopwatch.sh`: simple stopwatch script that counts the elapsed time in seconds, and displays it in the format HH:MM:SS.
  - `sync_music.sh`: script to sync my Android phone's music library to the contents of my `~/media/music/` directory, i.e. copy my music library from my
  laptop to my phone.
+ - `vimshot.sh`: script to take a wait a few seconds before taking a screenshot to the filepath in the clipboard, for use as part of my LaTeX note-taking workflow in Vim: create the figure environment, copy the file name, invoke this script, and select the region in the source material to be screenshotted.
  - `webcam.sh`: one-line script that uses the video viewer program `mpv` as a webcam by using `/dev/video0` as its video file source.
  - `wifi_dmenu.sh`: script to connect to an available WiFi network with a dmenu prompt. 
