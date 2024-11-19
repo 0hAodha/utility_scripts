@@ -25,8 +25,6 @@
  - `qutebrowser_search.sh`: script that finds all the search engines defined in the qutebrowser `config.py` configuration file and makes them available for
  searching via dmenu, i.e. allow web searching with qutebrowser without having to wait for it to start up before you start your search.
  - `repos_checker.sh`: script to find all of the Git repositories in the current directory & its sub-directories and display each found repository's `git status`.
- - `screenshot.sh`: screenshot script with selection using `maim` that both saves the image file and adds the image to the `xclip` clipboard, and notifies the user
- of the screenshot via `notify-send`.
  - `stdin_to_notis.sh`: scripts that reads from `stdin` and sends each line as a system notification.
  Intended for use when a program that outputs to `stdout` is called from a non-terminal or graphical program, making the `stdout` output inaccessible.
  The output can instead be piped into this script to make it readable as a system notification.
@@ -36,3 +34,5 @@
  - `vimshot.sh`: script to take a wait a few seconds before taking a screenshot to the filepath in the clipboard, for use as part of my LaTeX note-taking workflow in Vim: create the figure environment, copy the file name, invoke this script, and select the region in the source material to be screenshotted.
  - `webcam.sh`: one-line script that uses the video viewer program `mpv` as a webcam by using `/dev/video0` as its video file source.
  - `wifi_dmenu.sh`: script to connect to an available WiFi network with a dmenu prompt. 
+ - `x11_screenshot.sh`: screenshot script for X11 with selection using `maim` that both saves the image file and adds the image to the `xclip` clipboard, and notifies the user
+ of the screenshot via `notify-send`.
