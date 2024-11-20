@@ -34,6 +34,7 @@
  - `webcam.sh`: one-line script that uses the video viewer program `mpv` as a webcam by using `/dev/video0` as its video file source.
  - `wifi_dmenu.sh`: script to connect to an available WiFi network with a dmenu prompt. 
  - `wl_screenshot.sh`: screenshot script for Wayland with selection using `grim` & `slurp` that both saves the image file and adds the image to the `wl-copy` clipboard, and notifies the user of the screenshot via `notify-send`.
+ - `wl_vimshot.sh`: Wayland script to take a wait a few seconds before taking a screenshot to the filepath in the clipboard, for use as part of my LaTeX note-taking workflow in Vim: create the figure environment, copy the file name, invoke this script, and select the region in the source material to be screenshotted.
  - `x11_screenshot.sh`: screenshot script for X11 with selection using `maim` that both saves the image file and adds the image to the `xclip` clipboard, and notifies the user
  of the screenshot via `notify-send`.
  - `x11_vimshot.sh`: X11 script to take a wait a few seconds before taking a screenshot to the filepath in the clipboard, for use as part of my LaTeX note-taking workflow in Vim: create the figure environment, copy the file name, invoke this script, and select the region in the source material to be screenshotted.
