@@ -1,4 +1,4 @@
 #!/bin/sh
 # Script to look up word in dictionary file in the format: "word:\tdefinition\n"
 
-rg --no-line-number "^$1:" ~/.local/share/dictionary.txt
+printf "$(rg --no-line-number "^$1:" ~/.local/share/dictionary.txt || echo 'No definition found. The searched term may not be in the dictionary file, or the dictionary file may not be present')\n"
