@@ -22,6 +22,7 @@
  - `hugo_post.sh`: simple script to create a new Hugo post with the directory structure `/content/blog/Post Title/index.md` instead of the default
  `/content/blog/Post Title.md` created when you run the command `hugo new content`.
  - `list_manual_pkgs.sh`: one-line script to list only the names of packages manually installed with the xbps package manager (the default Void package manager).
+ - `play_music.sh`: simple script to play music albums based off the supplied artist & album name.
  - `qutebrowser_search.sh`: script that finds all the search engines defined in the qutebrowser `config.py` configuration file and makes them available for
  searching via dmenu, i.e. allow web searching with qutebrowser without having to wait for it to start up before you start your search.
  - `repos_checker.sh`: script to find all of the Git repositories in the current directory & its sub-directories and display each found repository's `git status`.
