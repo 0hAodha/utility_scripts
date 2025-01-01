@@ -49,7 +49,11 @@ case "$mimetype" in
         unzip -lv "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     audio/*)
-        exiftool -Picture -b "$file" | chafa --size "$(($width-4))"x"$height" || chafa cover.* --size "$(($width-4))"x"$height"
+        # attempt to preview the audio file's embedded image
+        ## if no embedded image, attempt to preview a file named 'cover.*' in the same directory
+             # else, generate a waveform image and display it
+        # exiftool -Picture -b "$file" | chafa --size "$(($width-4))"x"$height" || chafa cover.* --size "$(($width-4))"x"$height" || ffmpeg -i "$file" -filter_complex "showwavespic=s=1280x720:colors=white" -frames:v 1 -f image2pipe -vcodec png - | chafa --size "$(($width-4))"x"$height"
+        exiftool -Picture -b "$file" | chafa --size "$(($width-4))"x"$height" || chafa cover.* --size "$(($width-4))"x"$height" || ffmpeg -i "$file" -filter_complex "showwavespic=s=1280x720:colors=pink" -frames:v 1 -f image2pipe -vcodec png - | chafa --size "$(($width-4))"x"$height"
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     image/*)
