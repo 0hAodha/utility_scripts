@@ -66,9 +66,6 @@ case "$mimetype" in
     text/html)
         lynx -width="$width" -display_charset=utf-8 -dump "$file";;
 
-    text/markdown)
-        markdown-it "$file" | lynx -width="$width" -display_charset=utf-8 -dump -stdin;;
-
     video/*)
         ffmpeg -ss 00:00:00 -i "$file" -frames:v 1 -q:v 2 "$preview_image"
         chafa "$preview_image" --size "$(($width-4))"x"$height"
