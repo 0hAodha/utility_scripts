@@ -13,6 +13,4 @@ fi
 notify-send "$basename" "Taking screenshot to $filepath"
 
 sleep 5
-maim --select --hidecursor "$filepath"
-
-notify-send --icon "$filepath" "$basename" "Screenshot saved to: $filepath"
+maim --select --hidecursor "$filepath" && notify-send --icon "$filepath" "$basename" "Screenshot saved to: $filepath"
