@@ -10,12 +10,13 @@ Usage: autopape.sh [OPTIONS]... [ARGUMENTS]...
 Iterate over the files in a directory and set them as the desktop wallpaper at a regular interval.
 Options:
     -c  Specify the command that should be used to set the wallpaper. Defaults to 'feh --bg-fill'
-    -h  Print this help message
     -i  Specify the interval between wallpaper changes. Defaults to '1m'
+    -h  Print this help message
+    -s  Shuffle the files in the directory for each iteration
 EOF
 }
 
-while getopts 'c:i:h' flag; do
+while getopts 'c:i:h:s' flag; do
     case "${flag}" in
         c)
             command="${OPTARG}";;
@@ -27,6 +28,9 @@ while getopts 'c:i:h' flag; do
             usage
             exit 0;;
 
+        s)
+            files=$(find . -maxdepth 1 -type f | shuf);;
+
         *)
             usage
             exit 1;;
@@ -35,7 +39,11 @@ done
 
 while [ true ]
 do
-    for img in *
+    if [ -z $files ];then 
+        files-$(find . -maxdepth 1 -type f)
+    fi
+
+    for img in $files
     do
         eval "$command '$img'"
         sleep "$interval"
