@@ -1,8 +1,13 @@
 #!/bin/sh 
-# Screenshot script with selection using grim and slurp.
-#
+# Script to take a selection screenshot on both Xorg and Wayland
+
 filepath="$HOME/media/images/screenshots/$(date +%Y-%m-%d\ %H:%M:%S).png"
-grim -g "$(slurp)" - | tee "$filepath" | wl-copy
+
+if [ $(pgrep -x "Xorg") ]; then
+    maim --select --hidecursor | tee "$filepath" | xclip -selection clipboard -target image/png
+else
+    grim -g "$(slurp)" - | tee "$filepath" | wl-copy
+fi
 
 # if screenshot is cancelled, tee will create an empty file, so checking if the file is empty
 if [ -s "$filepath" ]; then
