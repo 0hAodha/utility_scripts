@@ -4,5 +4,10 @@
 
 while read line
 do
-    notify-send "$line"
+    if [ -z "$1" ]
+    then
+        notify-send "$line"
+    else
+        notify-send "$1" "$line"
+    fi
 done
