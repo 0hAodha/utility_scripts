@@ -16,4 +16,5 @@ my %icons = (
     "audio-headset" => ""
 );
 
-printf("$icons{$icon}  $device_name $battery_percentage%%");
+printf("$icons{$icon}  ") if exists $icons{$icon};
+printf("$device_name $battery_percentage%%");
