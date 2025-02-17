@@ -66,6 +66,9 @@ case "$mimetype" in
     text/html)
         lynx -width="$width" -display_charset=utf-8 -dump "$file";;
 
+    text/tab-separated-values)
+        column --table "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization --wrap=never;;
+
     video/*)
         ffmpeg -ss 00:00:00 -i "$file" -frames:v 1 -q:v 2 "$preview_image"
         chafa "$preview_image" --size "$(($width-4))"x"$height"
