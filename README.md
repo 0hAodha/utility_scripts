@@ -1,13 +1,13 @@
 # utility_scripts: a collection of miscellaneous scripts for use on my GNU/Linux laptop
  - `autopape.sh`: a simple script to endlessly loop through each image in a directory and set said image as the desktop wallpaper for a specified time period. Both the command used to set the wallpaper and the time interval between wallpaper changes can be specified with optional flags & arguments. Uses `feh --bg-fill` & an interval of `1m` by default.
- - `bluetooth-off.sh`: script for disabling bluetooth with bluetoothcl on a system that uses runit as its init system (such as Void GNU/Linux).
- - `bluetooth-on.sh`: Same as `bluetooth-off.sh` but for enabling bluetooth.
- - `bluetooth_dmenu.pl`: Perl script that allows the user to select a bluetooth device to connect to via `dmenu`.
- - `bluetooth_info.pl`: Perl script to display information about connected bluetooth devices. Designed to be used with polybar.
+ - `bluetooth-off.sh`: script for disabling Bluetooth with `bluetoothcl` on a system that uses runit as its init system (such as Void GNU/Linux).
+ - `bluetooth-on.sh`: Same as `bluetooth-off.sh` but for enabling Bluetooth.
+ - `bluetooth_dmenu.pl`: Perl script that allows the user to select a Bluetooth device to connect to via `dmenu`.
+ - `bluetooth_info.pl`: Perl script to display information about connected Bluetooth devices. Designed to be used with polybar.
  - `bspwm_window_count.sh`: script for listing the number of open windows on the current "desktop" (workspace) with the bspwm window manager. Primarily for use in status bars as indicator that windows may be hidden behind another when in floating or monocle mode.
  - `clean_files.sh`: script that loops through each file in a directory, opens each file with the `mimeopen` utility, and prompts the user to decide whether or not to delete the image.
  - `defn`: shell script to look up word in dictionary file in the format: `word:\tdefinition\n`.
- - `ensure_connected.sh`: script to remedy my broken WiFi, which has an issue of disconnecting unpredictably and then requiring several attempts to reconnect as if the password supplied were incorrect despite it not being changed since the inital connection. This script checks if the WiFi is connected at regular intervals, and if not will keep trying to reconnect until successful. Reads WiFi network name from a `config.env` file and uses the hashed password already store by NetworkManager. `file_previewer.sh`: a script for generating terminal file previews, for use in the terminal file manager `lf`.
+ - `ensure_connected.sh`: script to remedy my broken WiFi, which has an issue of disconnecting unpredictably and then requiring several attempts to reconnect as if the password supplied were incorrect despite it not being changed since the initial connection. This script checks if the WiFi is connected at regular intervals, and if not will keep trying to reconnect until successful. Reads WiFi network name from a `config.env` file and uses the hashed password already store by NetworkManager. `file_previewer.sh`: a script for generating terminal file previews, for use in the terminal file manager `lf`.
  Uses the `mimetype` utility to identify the filetype and generates an appropriate preview (text, ASCII image, etc).
  - `hide_bar.sh`: script for hiding & unhiding the polybar bar on the bspwm window manager.
  - `hugo_post.sh`: simple script to create a new Hugo post with the directory structure `/content/blog/Post Title/index.md` instead of the default.
