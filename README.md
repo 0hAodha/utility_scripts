@@ -9,6 +9,7 @@
  - `defn`: shell script to look up word in dictionary file in the format: `word:\tdefinition\n`.
  - `ensure_connected.sh`: script to remedy my broken WiFi, which has an issue of disconnecting unpredictably and then requiring several attempts to reconnect as if the password supplied were incorrect despite it not being changed since the initial connection. This script checks if the WiFi is connected at regular intervals, and if not will keep trying to reconnect until successful. Reads WiFi network name from a `config.env` file and uses the hashed password already store by NetworkManager. `file_previewer.sh`: a script for generating terminal file previews, for use in the terminal file manager `lf`.
  Uses the `mimetype` utility to identify the filetype and generates an appropriate preview (text, ASCII image, etc).
+ - `fzfplay.sh` script that allows a music file or directory to be selected via `fzf` to be enqueued with `umpv`.
  - `hide_bar.sh`: script for hiding & unhiding the polybar bar on the bspwm window manager.
  - `hugo_post.sh`: simple script to create a new Hugo post with the directory structure `/content/blog/Post Title/index.md` instead of the default.
  `/content/blog/Post Title.md` created when you run the command `hugo new content`.
