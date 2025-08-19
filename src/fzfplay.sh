@@ -4,7 +4,7 @@
 media_directory="$HOME/media/music"
 
 fd  --base-directory "$media_directory" \
-    --exclude '*.jpg' --exclude '*.png' \
+    --exclude "*.jpg" --exclude "*.png" --exclude "*.lrc" \
     --absolute-path |
     fzf |
     xargs -I{} sh -c 'umpv "{}" &'
