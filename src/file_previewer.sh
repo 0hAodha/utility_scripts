@@ -56,6 +56,10 @@ case "$mimetype" in
         exiftool -Picture -b "$file" | chafa --size "$(($width-4))"x"$height" || chafa cover.* --size "$(($width-4))"x"$height" || ffmpeg -i "$file" -filter_complex "showwavespic=s=1280x720:colors=pink" -frames:v 1 -f image2pipe -vcodec png - | chafa --size "$(($width-4))"x"$height"
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
+    image/x-xcf)
+        magick "$file" jpg: | chafa --size "$(($width-4))"x"$height" --animate off
+        exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
+
     image/*)
         chafa "$file" --size "$(($width-4))"x"$height" --animate off
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
