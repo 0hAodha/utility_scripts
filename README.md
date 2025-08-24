@@ -6,6 +6,7 @@
  - `bluetooth_info.pl`: Perl script to display information about connected Bluetooth devices. Designed to be used with polybar.
  - `bspwm_window_count.sh`: script for listing the number of open windows on the current "desktop" (workspace) with the bspwm window manager. Primarily for use in status bars as indicator that windows may be hidden behind another when in floating or monocle mode.
  - `clean_files.sh`: script that loops through each file in a directory, opens each file with the `mimeopen` utility, and prompts the user to decide whether or not to delete the image.
+ - `clean_papes.sh`: loops over files in a directory, setting each the as the desktop wallpaper, and prompts the user to save the file to the wallpapers directory or delete it.
  - `defn`: shell script to look up word in dictionary file in the format: `word:\tdefinition\n`.
  - `ensure_connected.sh`: script to remedy my broken WiFi, which has an issue of disconnecting unpredictably and then requiring several attempts to reconnect as if the password supplied were incorrect despite it not being changed since the initial connection. This script checks if the WiFi is connected at regular intervals, and if not will keep trying to reconnect until successful. Reads WiFi network name from a `config.env` file and uses the hashed password already store by NetworkManager. `file_previewer.sh`: a script for generating terminal file previews, for use in the terminal file manager `lf`.
  Uses the `mimetype` utility to identify the filetype and generates an appropriate preview (text, ASCII image, etc).
