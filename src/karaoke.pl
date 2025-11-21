@@ -9,7 +9,6 @@ sub create_tracklist_from_argv {
     my @tracks;
 
     foreach my $file_path (@ARGV) {
-        print("File path: $file_path\n");
         if (!-e $file_path) {
             die("$file_path does not exist");
         }
@@ -31,6 +30,7 @@ sub list_tracks_in_directory {
 
     my @tracks = qx(
         fd --base-directory "$directory" \\
+            --type file \\
             --exclude "*.jpg" --exclude "*.png" --exclude "*.lrc" \\
             --absolute-path
     );
@@ -67,25 +67,45 @@ sub extract_track_duration {
 
 sub get_synced_lyrics {
     my ($track_name, $artist_name, $album_name, $duration) = @_;
-    my $api_url = "https://lrclib.net/api/get";
+    my $api_url = "https://lrclib.net/api/search";
 
     my $response = qx(
         curl --get \\
             --data-urlencode "track_name=$track_name" \\
             --data-urlencode "artist_name=$artist_name" \\
             --data-urlencode "album_name=$album_name" \\
-            --data-urlencode "duration=$duration" \\
             $api_url
         ) or warn("Failed to fetch lyrics data from the API for: "
-            . "track_name=$track_name, artist_name=$artist_name, album_name=$album_name, duration=$duration"
-            ) and return;
+            . "track_name=$track_name, artist_name=$artist_name, album_name=$album_name"
+        ) and return;
 
-    my $synced_lyrics = decode_json($response)->{syncedLyrics}
-        or warn("Failed to extract 'syncedLyrics' field from JSON API response for:"
+    my $lyric_objects = decode_json($response);
+
+    my $best_duration_difference; # variable to store how different the closest duration match found was
+    my $best_synced_lyrics; # variable to store the synced lyrics of the closest duration match found
+
+    foreach my $lyric_object (@$lyric_objects) {
+        my $synced_lyrics = $lyric_object->{syncedLyrics};
+
+        if (defined $synced_lyrics) {
+            my $duration_difference = abs($lyric_object->{duration} - $duration);
+
+            # excluding synced lyrics where the duration is too different from the file we have
+            if ($duration_difference < 2 && (!defined $best_duration_difference || $duration_difference < $best_duration_difference)) {
+                $best_duration_difference = $duration_difference;
+                $best_synced_lyrics = $synced_lyrics;
+            }
+        }
+    }
+
+    if (!defined $best_synced_lyrics) {
+        warn("Failed to find suitable 'syncedLyrics' for:"
             . "track_name=$track_name, artist_name=$artist_name, album_name=$album_name, duration=$duration"
         );
-
-    return($synced_lyrics);
+    }
+    else {
+        return($best_synced_lyrics);
+    }
 }
 
 sub write_synced_lyrics {
@@ -103,14 +123,14 @@ sub main {
 
     foreach my $track (@tracks) {
         my @metadata = extract_track_metadata($track)
-            or warn("Failed to extract metadata from $track\n") and next;
+            or warn("Failed to extract metadata from $track") and next;
         my ($track_name, $artist_name, $album_name) = @metadata;
 
         my $duration = extract_track_duration($track)
-            or warn("Failed to extract duration from $track\n") and next;
+            or warn("Failed to extract duration from $track") and next;
 
         my $synced_lyrics = get_synced_lyrics($track_name, $artist_name, $album_name, $duration)
-            or warn("Failed to fetch synced lyrics for $track\n") and next;
+            or warn("Failed to fetch synced lyrics for $track") and next;
 
         write_synced_lyrics($track, $synced_lyrics);
     }
