@@ -13,9 +13,8 @@
   Uses the `mimetype` utility to identify the filetype and generates an appropriate preview (text, ASCII image, etc).
 - `fzfplay.sh` script that allows a music file or directory to be selected via `fzf` to be enqueued with `umpv`.
 - `hide_bar.sh`: script for hiding & unhiding the polybar bar on the bspwm window manager.
-- `hugo_post.sh`: simple script to create a new Hugo post with the directory structure `/content/blog/Post Title/index.md` instead of the default.
+- `hugo_post.sh`: simple script to create a new Hugo post with the directory structure `/content/blog/Post Title/index.md` instead of the default `/content/blog/Post Title.md` created when you run the command `hugo new content`.
 - `karaoke.pl`: script that fetches lyrics for music files from the LRCLIB API and saves them to \*.lrc files.
-  `/content/blog/Post Title.md` created when you run the command `hugo new content`.
 - `list_manual_pkgs.sh`: one-line script to list only the names of packages manually installed with the xbps package manager (the default Void package manager).
 - `music_dmenu.sh`: script to play a specific artist, album, or track selected with dmenu.
 - `play_music.sh`: simple script to play music albums based off the supplied artist & album name.
