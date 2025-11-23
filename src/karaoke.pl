@@ -102,8 +102,7 @@ sub get_synced_lyrics {
 }
 
 sub write_synced_lyrics {
-    my ($track, $synced_lyrics) = @_;
-    my $lyric_file = $track =~ s/\.[^.]+$/.lrc/r;
+    my ($track, $synced_lyrics, $lyric_file) = @_;
 
     open(my $file_handler, '>', $lyric_file)
         or warn("Cannot open $lyric_file") and return;
@@ -115,6 +114,12 @@ sub main {
     my @tracks = create_tracklist_from_argv();
 
     foreach my $track (@tracks) {
+        my $lyric_file = $track =~ s/\.[^.]+$/.lrc/r;
+        if (-e $lyric_file) {
+            print("$lyric_file already exists\n");
+            next;
+        }
+
         my @metadata = extract_track_metadata($track)
             or warn("Failed to extract metadata from $track") and next;
         my ($track_name, $artist_name, $album_name) = @metadata;
@@ -125,7 +130,7 @@ sub main {
         my $synced_lyrics = get_synced_lyrics($track_name, $artist_name, $album_name, $duration)
             or warn("Failed to fetch synced lyrics for $track") and next;
 
-        write_synced_lyrics($track, $synced_lyrics);
+        write_synced_lyrics($track, $synced_lyrics, $lyric_file);
     }
 }
 
