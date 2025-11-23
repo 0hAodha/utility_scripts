@@ -23,7 +23,7 @@
   hook:
     hooks:
       - event: album_imported
-        command: '/path/to/script/karaoke.pl "$album.path"'
+        command: '/path/to/script/karaoke.pl "{album.path}"'
   ```
 
 - `list_manual_pkgs.sh`: one-line script to list only the names of packages manually installed with the xbps package manager (the default Void package manager).
