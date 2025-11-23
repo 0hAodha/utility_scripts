@@ -98,14 +98,7 @@ sub get_synced_lyrics {
         }
     }
 
-    if (!defined $best_synced_lyrics) {
-        warn("Failed to find suitable 'syncedLyrics' for:"
-            . "track_name=$track_name, artist_name=$artist_name, album_name=$album_name, duration=$duration"
-        );
-    }
-    else {
-        return($best_synced_lyrics);
-    }
+    return($best_synced_lyrics);
 }
 
 sub write_synced_lyrics {
