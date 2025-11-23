@@ -15,6 +15,17 @@
 - `hide_bar.sh`: script for hiding & unhiding the polybar bar on the bspwm window manager.
 - `hugo_post.sh`: simple script to create a new Hugo post with the directory structure `/content/blog/Post Title/index.md` instead of the default `/content/blog/Post Title.md` created when you run the command `hugo new content`.
 - `karaoke.pl`: script that fetches lyrics for music files from the LRCLIB API and saves them to \*.lrc files.
+  - If you use [beets](https://docs.beets.io/en/latest/index.html) to manage your music library, you can make this script run automatically on an album once imported by adding the following lines to your beets `config.yaml`:
+
+  ```yaml
+  plugins: hook # append to your pre-existing plugin list if using other plugins
+
+  hook:
+    hooks:
+      - event: album_imported
+        command: '/path/to/script/karaoke.pl "$album.path"'
+  ```
+
 - `list_manual_pkgs.sh`: one-line script to list only the names of packages manually installed with the xbps package manager (the default Void package manager).
 - `music_dmenu.sh`: script to play a specific artist, album, or track selected with dmenu.
 - `play_music.sh`: simple script to play music albums based off the supplied artist & album name.
