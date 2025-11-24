@@ -73,6 +73,10 @@ case "$mimetype" in
     text/tab-separated-values)
         column --separator $'\t' --table "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization --wrap=never;;
 
+    text/x-scala)
+        sc-im --nocurses --export_csv --quit_afterload "$file" | column --separator "," --table | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization --wrap=never;;
+
+
     video/*)
         ffmpeg -ss 00:00:00 -i "$file" -frames:v 1 -q:v 2 "$preview_image"
         chafa "$preview_image" --size "$(($width-4))"x"$height"
