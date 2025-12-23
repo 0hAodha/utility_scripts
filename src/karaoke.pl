@@ -45,6 +45,7 @@ sub list_tracks_in_directory {
 
 sub extract_track_metadata {
     my ($track) = @_; 
+    print("Extracting metadata from $track\n");
 
     my @metadata = qx(exiftool -short3 -Title -Artist -Album "$track");
     chomp(@metadata);
@@ -54,6 +55,7 @@ sub extract_track_metadata {
 
 sub extract_track_duration {
     my ($track) = @_; 
+    print("Extracting track duration from $track\n");
 
     my $duration = qx(ffprobe -loglevel quiet -output_format csv=p=0 -show_entries format=duration "$track");
     chomp($duration);
@@ -68,6 +70,8 @@ sub extract_track_duration {
 sub get_synced_lyrics {
     my ($track_name, $artist_name, $album_name, $duration) = @_;
     my $api_url = "https://lrclib.net/api/search";
+
+    print("Fetching synced lyrics for track $track_name with duration $duration on album $album_name by $artist_name\n");
 
     my $response = qx(
         curl --get \\
@@ -103,6 +107,7 @@ sub get_synced_lyrics {
 
 sub write_synced_lyrics {
     my ($track, $synced_lyrics, $lyric_file) = @_;
+    print("Writing synced lyrics to $lyric_file\n");
 
     open(my $file_handler, '>', $lyric_file)
         or warn("Cannot open $lyric_file") and return;
