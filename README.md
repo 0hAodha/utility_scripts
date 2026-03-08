@@ -16,6 +16,7 @@
 - `hugo_post.sh`: simple script to create a new Hugo post with the directory structure `/content/blog/Post Title/index.md` instead of the default `/content/blog/Post Title.md` created when you run the command `hugo new content`.
 - `karaoke.pl`: script that fetches lyrics for music files from the LRCLIB API and saves them to \*.lrc files.
   - If you use [beets](https://docs.beets.io/en/latest/index.html) to manage your music library, you can make this script run automatically on an album once imported by adding the following lines to your beets `config.yaml`:
+- `shuffle_music.sh`: script to enqueue all the music in a library in a random order.
 
   ```yaml
   plugins: hook # append to your pre-existing plugin list if using other plugins
