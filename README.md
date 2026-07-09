@@ -27,6 +27,7 @@
   ```
 
 - `list_manual_pkgs.sh`: one-line script to list only the names of packages manually installed with the xbps package manager (the default Void package manager).
+- `mousshe.sh`: script for controlling the mouse of an Xorg session over SSH.
 - `music_dmenu.sh`: script to play a specific artist, album, or track selected with dmenu.
 - `play_music.sh`: simple script to play music albums based off the supplied artist & album name.
 - `qutebrowser_search.sh`: script that finds all the search engines defined in the qutebrowser `config.py` configuration file and makes them available for searching via dmenu, i.e. allow web searching with qutebrowser without having to wait for it to start up before you start your search.
