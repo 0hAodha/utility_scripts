@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script for controlling the mouse of an Xorg session over SSH
 
-DISPLAY=:0
+export DISPLAY=:0
 STEP_SIZE=10
 
 while true; do
