@@ -12,6 +12,6 @@ while true; do
         j)      xdotool mousemove_relative -- 0 "$STEP_SIZE" ;;
         k)      xdotool mousemove_relative -- 0 "-$STEP_SIZE" ;;
         l)      xdotool mousemove_relative -- "$STEP_SIZE" 0 ;;
-        ' ')    xdotool click 1 ;;
+        x)    xdotool click 1 ;;
     esac
 done
