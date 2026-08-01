@@ -11,6 +11,22 @@ y=$5
 
 mimetype="$(mimetype --brief -- "$file")"
 
+display_image_kitty() {
+    image_file=$1
+    kitty +kitten icat --silent --stdin no --transfer-mode file --place "${width}x${height}@${x}x${y}" "$image_file" < /dev/null > /dev/tty
+}
+
+display_image_default() {
+    image_file=$1
+    chafa "$image_file" --size "$(($width-4))"x"$height" --animate off
+}
+
+if [ "$TERM" = "xterm-kitty" ]; then
+    display_image=display_image_kitty
+else
+    display_image=display_image_default
+fi
+
 if [ "$mimetype" = "inode/symlink" ]; then
     file="$(readlink "$file")"
     mimetype="$(mimetype --brief -- "$file")"
@@ -49,10 +65,6 @@ case "$mimetype" in
         unzip -lv "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     audio/*)
-        # attempt to preview the audio file's embedded image
-        ## if no embedded image, attempt to preview a file named 'cover.*' in the same directory
-             # else, generate a waveform image and display it
-        # exiftool -Picture -b "$file" | chafa --size "$(($width-4))"x"$height" || chafa cover.* --size "$(($width-4))"x"$height" || ffmpeg -i "$file" -filter_complex "showwavespic=s=1280x720:colors=white" -frames:v 1 -f image2pipe -vcodec png - | chafa --size "$(($width-4))"x"$height"
         exiftool -Picture -b "$file" | chafa --size "$(($width-4))"x"$height" || chafa cover.* --size "$(($width-4))"x"$height" || ffmpeg -i "$file" -filter_complex "showwavespic=s=1280x720:colors=pink" -frames:v 1 -f image2pipe -vcodec png - | chafa --size "$(($width-4))"x"$height"
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
@@ -61,7 +73,7 @@ case "$mimetype" in
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     image/*)
-        chafa "$file" --size "$(($width-4))"x"$height" --animate off
+        $display_image "$file"
         exiftool "$file" | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization;;
 
     text/csv)
@@ -75,7 +87,6 @@ case "$mimetype" in
 
     text/x-scala)
         sc-im --nocurses --export_csv --quit_afterload "$file" | column --separator "," --table | bat --theme='base16' --terminal-width "$(($width-4))" --force-colorization --wrap=never;;
-
 
     video/*)
         ffmpeg -ss 00:00:00 -i "$file" -frames:v 1 -q:v 2 "$preview_image"
