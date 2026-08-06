@@ -6,6 +6,7 @@
 - `bluetooth_dmenu.pl`: Perl script that allows the user to select a Bluetooth device to connect to via `dmenu`.
 - `bluetooth_info.pl`: Perl script to display information about connected Bluetooth devices. Designed to be used with polybar.
 - `bspwm_window_count.sh`: script for listing the number of open windows on the current "desktop" (workspace) with the bspwm window manager. Primarily for use in status bars as indicator that windows may be hidden behind another when in floating or monocle mode.
+- `claude.sh`: wrapper for running the official Claude Code CLI binary on Guix System, where its FHS-expecting release binary can't run natively. Launches it inside a `guix shell --container --emulate-fhs` sandbox that merges a base toolchain with the user's own installed packages, shares the host filesystem to mirror the invoking user's own permissions, and forwards `TERM`/`DISPLAY`/session environment variables so color, clipboard, and desktop integration work as normal.
 - `clean_files.sh`: script that loops through each file in a directory, opens each file with the `mimeopen` utility, and prompts the user to decide whether or not to delete the image.
 - `clean_papes.sh`: loops over files in a directory, setting each the as the desktop wallpaper, and prompts the user to save the file to the wallpapers directory or delete it.
 - `defn`: shell script to look up word in dictionary file in the format: `word:\tdefinition\n`.
