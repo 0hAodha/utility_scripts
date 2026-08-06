@@ -5,7 +5,7 @@ set -euo pipefail
 # Minimum toolchain Claude Code's own Bash tool needs to function inside
 # the container - kept explicit (not derived from the user profile) so it
 # doesn't silently break if that profile lacks e.g. bash.
-BASE_PKGS="glibc gcc-toolchain ripgrep nss-certs bash coreutils findutils grep sed gawk which file tar gzip curl git less xclip"
+BASE_PKGS="glibc gcc-toolchain ripgrep nss-certs bash coreutils findutils grep sed gawk which file tar gzip curl git openssh less xclip"
 
 # `guix shell -p PROFILE` can't be combined with plain package args ("--profile
 # cannot be used with package options"), so instead resolve the user's own
