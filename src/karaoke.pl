@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 # Script that fetches lyrics for music files from the LRCLIB API and saves them to *.lrc files.
 
 use strict;
