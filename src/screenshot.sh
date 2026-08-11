@@ -3,7 +3,7 @@
 
 filepath="$HOME/media/images/screenshots/$(date +%Y-%m-%d\ %H:%M:%S).png"
 
-if [ $(pgrep -x "Xorg") ]; then
+if [ -n "$DISPLAY" ]; then
     maim --select --hidecursor | tee "$filepath" | xclip -selection clipboard -target image/png
 else
     grim -g "$(slurp)" - | tee "$filepath" | wl-copy
