@@ -1,4 +1,4 @@
-#!/usr/bin/perl -l
+#!/usr/bin/env perl -l
 # Script that constructs a `dmenu` menu of all search engines defined in the qutebrowser configuration file for searching without first launching qutebrowser
 use strict;
 use warnings;
